@@ -1,0 +1,148 @@
+<testsuite errors="0" failures="0" hostname="shevchenko-02-pc" name="Dump_testing.Dump data from socket" skipped="0" tests="8" time="23.024055" timestamp="2018-05-03T10:34:00.064644"><testcase classname="Dump_testing.Dump data from socket" name="Connect to socket with valid arguments -- @1.1 Several output" status="passed" time="0.11732"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario Outline: Connect to socket with valid arguments -- @1.1 Several output
+    Given Server Address localhost ... passed in 0.001s
+    And Server port 4444 ... passed in 0.001s
+    And Output file 1.txt ... passed in 0.001s
+    When CLI is started with args ... passed in 0.114s
+    Then Output file is created and should contain some text ... passed in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+Launch CLI tool like: python __main__.py  -a localhost -p 4444 -o 1.txt
+Expected path to output file: 1.txt
+
+]]>
+</system-out></testcase><testcase classname="Dump_testing.Dump data from socket" name="Connect to socket with valid arguments -- @1.2 Several output" status="passed" time="0.106288"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario Outline: Connect to socket with valid arguments -- @1.2 Several output
+    Given Server Address localhost ... passed in 0.000s
+    And Server port 4444 ... passed in 0.001s
+    And Output file 3.txt ... passed in 0.001s
+    When CLI is started with args ... passed in 0.104s
+    Then Output file is created and should contain some text ... passed in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+Launch CLI tool like: python __main__.py  -a localhost -p 4444 -o 3.txt
+Expected path to output file: 3.txt
+
+]]>
+</system-out></testcase><testcase classname="Dump_testing.Dump data from socket" name="Connect to socket with invalid port -- @1.1 Invalid port" status="passed" time="0.109297"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario Outline: Connect to socket with invalid port -- @1.1 Invalid port
+    Given Server Address localhost ... passed in 0.001s
+    And Server port 4000444 ... passed in 0.001s
+    And Output file 1.txt ... passed in 0.001s
+    When CLI is started with args ... passed in 0.107s
+    Then [WinError 10061] ... passed in 0.001s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+Launch CLI tool like: python __main__.py  -a localhost -p 4000444 -o 1.txt
+Expected error: ERROR:root:getsockaddrarg: port must be 0-65535.
+
+
+]]>
+</system-out></testcase><testcase classname="Dump_testing.Dump data from socket" name="Connect to socket with invalid port -- @1.2 Invalid port" status="passed" time="1.116008"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario Outline: Connect to socket with invalid port -- @1.2 Invalid port
+    Given Server Address localhost ... passed in 0.001s
+    And Server port 3306 ... passed in 0.001s
+    And Output file 1.txt ... passed in 0.001s
+    When CLI is started with args ... passed in 1.114s
+    Then [WinError 10061] ... passed in 0.001s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+Launch CLI tool like: python __main__.py  -a localhost -p 3306 -o 1.txt
+Expected error: ERROR:root:[WinError 10061] No connection could be made because the target machine actively refused it
+
+
+]]>
+</system-out></testcase><testcase classname="Dump_testing.Dump data from socket" name="Connect to socket with invalid address -- @1.1 Invalid Address" status="passed" time="0.231622"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario Outline: Connect to socket with invalid address -- @1.1 Invalid Address
+    Given Server Address ping.host ... passed in 0.000s
+    And Server port 4444 ... passed in 0.000s
+    And Output file 1.txt ... passed in 0.001s
+    When CLI is started with args ... passed in 0.230s
+    Then [WinError 11001] ... passed in 0.001s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+Launch CLI tool like: python __main__.py  -a ping.host -p 4444 -o 1.txt
+Expected error: ERROR:root:[Errno 11001] getaddrinfo failed
+
+
+]]>
+</system-out></testcase><testcase classname="Dump_testing.Dump data from socket" name="Connect to socket with invalid address -- @1.2 Invalid Address" status="passed" time="0.114305"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario Outline: Connect to socket with invalid address -- @1.2 Invalid Address
+    Given Server Address 123.456.789 ... passed in 0.000s
+    And Server port 4444 ... passed in 0.000s
+    And Output file 1.txt ... passed in 0.000s
+    When CLI is started with args ... passed in 0.114s
+    Then [WinError 11001] ... passed in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+Launch CLI tool like: python __main__.py  -a 123.456.789 -p 4444 -o 1.txt
+Expected error: ERROR:root:[Errno 11001] getaddrinfo failed
+
+
+]]>
+</system-out></testcase><testcase classname="Dump_testing.Dump data from socket" name="Connect to socket with invalid address -- @1.3 Invalid Address" status="passed" time="21.108896"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario Outline: Connect to socket with invalid address -- @1.3 Invalid Address
+    Given Server Address 123.123.123.123 ... passed in 0.001s
+    And Server port 4444 ... passed in 0.001s
+    And Output file 1.txt ... passed in 0.001s
+    When CLI is started with args ... passed in 21.105s
+    Then [WinError 10060] ... passed in 0.001s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+Launch CLI tool like: python __main__.py  -a 123.123.123.123 -p 4444 -o 1.txt
+Expected error: ERROR:root:[WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+
+
+]]>
+</system-out></testcase><testcase classname="Dump_testing.Dump data from socket" name="Run without arguments" status="passed" time="0.12032"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Run without arguments
+    Given arguments not exist ... passed in 0.000s
+    When CLI is started without args ... passed in 0.119s
+    Then Help appears ... passed in 0.001s
+
+@scenario.end
+--------------------------------------------------------------------------------
+
+Captured stdout:
+Expected output of HELP: usage: BDD_Task [-h] [-a ADDRESS] [-p PORT] -o OUTPUT
+
+
+]]>
+</system-out></testcase></testsuite>
